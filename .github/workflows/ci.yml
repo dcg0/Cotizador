@@ -1,0 +1,26 @@
+name: Validate
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  repository:
+    name: Validate repository hygiene
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Validate required security files
+        run: |
+          test -s README.md
+          test -s SECURITY.md
+          test -s .github/dependabot.yml
+          if grep -RIn --exclude-dir=.git -E 'BEGIN (RSA|OPENSSH|EC|DSA) PRIVATE KEY|password[[:space:]]*[:=]|api[_-]?key[[:space:]]*[:=]' .; then
+            echo 'Potential secret-like material found in tracked content' >&2
+            exit 1
+          fi
+          echo 'Repository hygiene validation passed'
