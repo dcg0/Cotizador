@@ -1,4 +1,5 @@
-# Cotizador
+![Texto descriptivo](dcdcdc.jpg)
+
 
 https://mmesudo.github.io/ROJO-INSTALACIONES-/
 Repositorio preparado para el desarrollo del cotizador de DC Laboratory.
