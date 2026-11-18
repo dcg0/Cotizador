@@ -1,3 +1,6 @@
+
+![Texto descriptivo](dcdcdc.png)
+
 # Política de seguridad
 
 ## Alcance
